@@ -1,120 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-//
-// class MessageScreen extends StatefulWidget {
-//   final String otherUserId; // Other user's UID
-//   final String otherUserName; // Other user's name
-//
-//   MessageScreen({required this.otherUserId, required this.otherUserName});
-//
-//   @override
-//   _MessageScreenState createState() => _MessageScreenState();
-// }
-//
-// class _MessageScreenState extends State<MessageScreen> {
-//   final _messageController = TextEditingController();
-//   final _currentUser = FirebaseAuth.instance.currentUser!; // Current logged-in user
-//
-//   /// Sends a message to Firestore
-//   void _sendMessage() {
-//     // Generate a consistent chat ID
-//     final chatId = _getChatId(_currentUser.uid, widget.otherUserId);
-//
-//     FirebaseFirestore.instance
-//         .collection('messages')
-//         .doc(chatId)
-//         .collection('messages')
-//         .add({
-//       'text': _messageController.text,
-//       'sender': _currentUser.uid,
-//       'timestamp': FieldValue.serverTimestamp(),
-//     });
-//
-//     _messageController.clear();
-//   }
-//
-//   /// Generates a consistent chat ID for two users
-//   String _getChatId(String user1, String user2) {
-//     return user1.compareTo(user2) > 0 ? "aa" : "bb";
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     // Chat ID generated using current user and the selected user
-//     final chatId = _getChatId(_currentUser.uid, widget.otherUserId);
-//
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(widget.otherUserName), // Display the other user's name
-//       ),
-//       body: Column(
-//         children: [
-//           // Chat messages list
-//           Expanded(
-//             child: StreamBuilder(
-//               stream: FirebaseFirestore.instance
-//                   .collection('messages')
-//                   .doc(chatId)
-//                   .collection('messages')
-//                   .orderBy('timestamp', descending: true)
-//                   .snapshots(),
-//               builder: (ctx, AsyncSnapshot<QuerySnapshot> messageSnapshot) {
-//                 if (!messageSnapshot.hasData) return CircularProgressIndicator();
-//                 final messages = messageSnapshot.data!.docs;
-//
-//                 return ListView.builder(
-//                   reverse: true,
-//                   itemCount: messages.length,
-//                   itemBuilder: (ctx, index) {
-//                     final message = messages[index];
-//                     final isMe = message['sender'] == _currentUser.uid;
-//
-//                     return ListTile(
-//                       title: Align(
-//                         alignment:
-//                         isMe ? Alignment.centerRight : Alignment.centerLeft,
-//                         child: Container(
-//                           padding: EdgeInsets.all(10),
-//                           decoration: BoxDecoration(
-//                             color: isMe ? Colors.teal : Colors.grey[300],
-//                             borderRadius: BorderRadius.circular(10),
-//                           ),
-//                           child: Text(
-//                             message['text'],
-//                             style: TextStyle(color: isMe ? Colors.white : Colors.black),
-//                           ),
-//                         ),
-//                       ),
-//                     );
-//                   },
-//                 );
-//               },
-//             ),
-//           ),
-//           // Input field and send button
-//           Padding(
-//             padding: const EdgeInsets.all(8.0),
-//             child: Row(
-//               children: [
-//                 Expanded(
-//                   child: TextField(
-//                     controller: _messageController,
-//                     decoration: InputDecoration(labelText: 'Type a message...'),
-//                   ),
-//                 ),
-//                 IconButton(
-//                   icon: Icon(Icons.send),
-//                   onPressed: _sendMessage,
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -286,3 +169,13 @@ class _MessageScreenState extends State<MessageScreen> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
